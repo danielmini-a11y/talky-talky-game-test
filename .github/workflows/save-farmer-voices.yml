@@ -1,0 +1,35 @@
+name: Save farmer voice files
+on:
+  push:
+    paths:
+      - '.github/workflows/save-farmer-voices.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  save-voices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download generated HeyGen speech files
+        run: |
+          mkdir -p audio
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=8d884544-b402-4628-96a0-63529ac07222.wav' --output 'audio/farmer-stage-1.wav'
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=3fb0391f-ef6d-43b0-8257-8b12aad4146d.wav' --output 'audio/farmer-stage-2.wav'
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=73e0fc40-1daa-4406-92f5-f261bc275824.wav' --output 'audio/farmer-stage-3.wav'
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=5228e1ec-9726-461e-a72e-9e41b27b6389.wav' --output 'audio/farmer-stage-4.wav'
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=debed821-44cf-4718-9c7a-e5319d1a8e7e.wav' --output 'audio/farmer-stage-5.wav'
+          curl --fail --location --retry 3 --max-time 90 'https://resource2.heygen.ai/text_to_speech/dd654b6f8da24cffbef0f0d6728c302c/0f04c50500bf417396ba2e846d7bd3d7/id=882a2269-36d1-47f3-b16f-b7db8687e6c9.wav' --output 'audio/farmer-finale.wav'
+          file audio/*.wav
+          for f in audio/*.wav; do test "$(wc -c < "$f")" -gt 1000 || exit 1; done
+      - name: Commit downloaded voices
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add audio/farmer-*.wav
+          if ! git diff --cached --quiet; then
+            git commit -m 'Save HeyGen farmer narration locally'
+            git push
+          fi
