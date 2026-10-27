@@ -4,7 +4,7 @@
 #mission strong{font-size:14px;color:#ffdc9c}#mission small{display:block;font-size:11px;color:#ead7c5}
 #mission button{border:1px solid #b68b52;background:#5c3b50;color:#fff;padding:9px;border-radius:9px;font-weight:bold}
 .find-object{position:absolute;display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:25px;line-height:1;cursor:pointer;user-select:none;touch-action:none;filter:drop-shadow(0 2px 2px #0008);transition:opacity .2s}
-.find-object.found{opacity:0;pointer-events:none}
+.find-object.found{opacity:0;pointer-events:none}.find-object.picked{animation:pickup .65s ease-out forwards;z-index:8}@keyframes pickup{0%{transform:scale(1);opacity:1;filter:drop-shadow(0 0 4px #ffe08b)}45%{transform:scale(2.3) rotate(-8deg);opacity:1;filter:drop-shadow(0 0 20px #ffdf70)}100%{transform:scale(.15) translateY(-80px);opacity:0}}
 #toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#23172de8;color:#ffe4a7;border:1px solid #e6b86a;border-radius:12px;padding:9px 13px;font-weight:800;z-index:5;pointer-events:none;opacity:0;transition:opacity .25s;white-space:nowrap}
 #complete{display:none;position:fixed;inset:0;background:#120b1be8;z-index:20;align-items:center;justify-content:center;padding:22px}
 #complete .panel{background:#fff1d0;color:#4a2b36;border:5px solid #c99955;border-radius:22px;max-width:400px;width:100%;padding:24px;text-align:center}
@@ -39,7 +39,7 @@ function update(){progress.textContent=found.size+' / '+items.length+'개 발견
  const next=items.findIndex((_,i)=>!found.has(i));goal.textContent=next<0?'모든 물건을 찾았어요!':'찾을 물건: '+items[next][2]+' / '+items[next][1].toUpperCase();
 }
 function message(t){toast.textContent=t;toast.style.opacity='1';clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.style.opacity='0',1600)}
-function collect(i,e){if(found.has(i))return;found.add(i);e.classList.add('found');message('✨ '+items[i][1]+' · '+items[i][2]+' 발견!');update();if(found.size===items.length)setTimeout(()=>{complete.style.display='flex'},800)}
+function collect(i,e){if(found.has(i))return;found.add(i);e.classList.add('picked');setTimeout(()=>e.classList.add('found'),650);message('✨ '+items[i][1]+' · '+items[i][2]+' 발견!');update();if(found.size===items.length)setTimeout(()=>{complete.style.display='flex'},800)}
 hint.addEventListener('click',()=>{if(hints<=0){message('힌트를 모두 사용했어요');return}const i=items.findIndex((_,i)=>!found.has(i));if(i<0)return;hints--;update();const el=markers[i];el.style.outline='5px solid #fff29a';el.style.borderRadius='50%';el.style.boxShadow='0 0 0 13px #ffe27988';setTimeout(()=>{el.style.outline='';el.style.boxShadow=''},2200);message('✨ 반짝이는 물건을 찾아보세요')});
 document.getElementById('again').onclick=()=>{complete.style.display='none';round++;place()};
 place();
