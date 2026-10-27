@@ -1,0 +1,186 @@
+{
+  "source": "a_wide_ultra_detailed_cluttered_magical_hallowe.png",
+  "source_dimensions": [
+    2141,
+    734
+  ],
+  "status": "reference tiles; NOT independently redrawn 12K detail",
+  "grid": [
+    4,
+    2
+  ],
+  "overlap_px": 36,
+  "target_resolution": [
+    12288,
+    6144
+  ],
+  "tiles": [
+    {
+      "id": "r1c1",
+      "filename": "costume_r1_c1.webp",
+      "source_crop": [
+        0,
+        0,
+        571,
+        403
+      ],
+      "core_region": [
+        0,
+        0,
+        535,
+        367
+      ],
+      "pixel_dimensions": [
+        571,
+        403
+      ]
+    },
+    {
+      "id": "r1c2",
+      "filename": "costume_r1_c2.webp",
+      "source_crop": [
+        499,
+        0,
+        1106,
+        403
+      ],
+      "core_region": [
+        535,
+        0,
+        1070,
+        367
+      ],
+      "pixel_dimensions": [
+        607,
+        403
+      ]
+    },
+    {
+      "id": "r1c3",
+      "filename": "costume_r1_c3.webp",
+      "source_crop": [
+        1034,
+        0,
+        1642,
+        403
+      ],
+      "core_region": [
+        1070,
+        0,
+        1606,
+        367
+      ],
+      "pixel_dimensions": [
+        608,
+        403
+      ]
+    },
+    {
+      "id": "r1c4",
+      "filename": "costume_r1_c4.webp",
+      "source_crop": [
+        1570,
+        0,
+        2141,
+        403
+      ],
+      "core_region": [
+        1606,
+        0,
+        2141,
+        367
+      ],
+      "pixel_dimensions": [
+        571,
+        403
+      ]
+    },
+    {
+      "id": "r2c1",
+      "filename": "costume_r2_c1.webp",
+      "source_crop": [
+        0,
+        331,
+        571,
+        734
+      ],
+      "core_region": [
+        0,
+        367,
+        535,
+        734
+      ],
+      "pixel_dimensions": [
+        571,
+        403
+      ]
+    },
+    {
+      "id": "r2c2",
+      "filename": "costume_r2_c2.webp",
+      "source_crop": [
+        499,
+        331,
+        1106,
+        734
+      ],
+      "core_region": [
+        535,
+        367,
+        1070,
+        734
+      ],
+      "pixel_dimensions": [
+        607,
+        403
+      ]
+    },
+    {
+      "id": "r2c3",
+      "filename": "costume_r2_c3.webp",
+      "source_crop": [
+        1034,
+        331,
+        1642,
+        734
+      ],
+      "core_region": [
+        1070,
+        367,
+        1606,
+        734
+      ],
+      "pixel_dimensions": [
+        608,
+        403
+      ]
+    },
+    {
+      "id": "r2c4",
+      "filename": "costume_r2_c4.webp",
+      "source_crop": [
+        1570,
+        331,
+        2141,
+        734
+      ],
+      "core_region": [
+        1606,
+        367,
+        2141,
+        734
+      ],
+      "pixel_dimensions": [
+        571,
+        403
+      ]
+    }
+  ],
+  "rules": [
+    "Preserve exact perspective, stairs, windows, balconies, and object placement of source",
+    "All item categories mixed throughout every area",
+    "Draw high-detail replacement tiles using source crop as strict composition reference",
+    "Do not claim upscaling adds detail",
+    "Keep collectible items as separate transparent assets"
+  ]
+}
