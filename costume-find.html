@@ -95,4 +95,4 @@ document.getElementById('again').onclick=()=>{complete.style.display='none';ches
 document.getElementById('finish').onclick=()=>{complete.style.display='none';goal.textContent='🎉 미션 완료 · 의상실 탈출 성공!';progress.textContent='8 / 8개 발견 · 게임 완료';hint.style.display='none';document.getElementById('reset').textContent='다시 도전';document.getElementById('reset').onclick=()=>location.reload()};
 place();
 })();
-</script></body></html>
+</script><script>(function(){const p=new URLSearchParams(location.search),name=(p.get('student')||'').trim().slice(0,24),group=(p.get('group')||'').trim().slice(0,30);if(name||group){const el=document.querySelector('.bar small');if(el)el.textContent=[group,name].filter(Boolean).join(' · ')+' | 한 손가락 이동 · 두 손가락 확대';}})();</script></body></html>
